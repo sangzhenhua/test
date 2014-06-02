@@ -1,0 +1,21 @@
+1.<android-sdk>/tools/android create uitest-project -n <name> -t 1 -p <path>
+
+The <name> is the name of the project that contains your uiautomator test source files, and the <path> is the path to the corresponding project directory. 
+
+2.Go to the project directory where your build.xml file is located and build your test JAR.
+
+ant build
+
+3.Deploy your generated test JAR file to the test device by using the adb push command:
+
+adb push <path_to_output_jar> /data/local/tmp/
+
+Here¡¯s an example:
+
+adb push ~/dev/workspace/LaunchSettings/bin/LaunchSettings.jar /data/local/tmp/
+
+adb shell uiautomator runtest LaunchSettings.jar -c com.uia.example.my.LaunchSettings
+
+adb push E:\workspace\UIAutoTest\bin\UIAutoTest.jar /data/local/tmp
+
+adb shell uiautomator runtest UIAutoTest.jar -c com.pekall.test.mdmui.SettingUi
